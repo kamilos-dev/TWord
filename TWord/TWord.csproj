@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>Library</OutputType>
+    <RootNamespace>TWord</RootNamespace>
+    <StartupObject></StartupObject>
+    <AssemblyName>TWord</AssemblyName>
+  </PropertyGroup>
+
+</Project>
