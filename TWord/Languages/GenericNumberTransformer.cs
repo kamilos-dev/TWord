@@ -4,30 +4,27 @@ using System.Linq;
 
 namespace TWord
 {
+    ///<inheritdoc cref="INumberTransformer"/>
     internal class GenericNumberTransformer : INumberTransformer
     {
         private readonly ILanguageNumbersDictionary _numbersDictionary;
-        private readonly ITriplerTransformer _triplerTransformer;
+        private readonly ITripletTransformer _triplerTransformer;
         private readonly ILargeNumberNamesDictionary _largeNumberNamesDictionary;
         private readonly INounInflector _nounInflector;
 
-        private readonly string _separator;
-
         public GenericNumberTransformer(
             ILanguageNumbersDictionary numbersDictionary,
-            ITriplerTransformer triplerTransformer,
+            ITripletTransformer triplerTransformer,
             ILargeNumberNamesDictionary largeNumberNamesDictionary,
-            INounInflector nounInflector,
-            string separator = " ")
+            INounInflector nounInflector)
         {
             _numbersDictionary = numbersDictionary;
             _triplerTransformer = triplerTransformer;
             _largeNumberNamesDictionary = largeNumberNamesDictionary;
             _nounInflector = nounInflector;
-
-            _separator = separator;
         }
 
+        ///<inheritdoc cref="INumberTransformer"/>
         public string ToWords(long value)
         {
             if (value == 0)
@@ -41,23 +38,28 @@ namespace TWord
                 value = Math.Abs(value);
             }
 
-            words.AddRange(GetWordsBySplitNumberToTriples(value));
+            words.AddRange(GetWordsBySplitNumberToTriplets(value));
 
-            return string.Join(_separator, words.OfType<string>()).Trim();
+            return string.Join(" ", words.OfType<string>()).Trim();
         }
 
-        private ArrayList GetWordsBySplitNumberToTriples(long number)
+        /// <summary>
+        /// Returns array of words by transform number into triplets
+        /// </summary>
+        /// <param name="number">Number to transform</param>
+        /// <returns>ArrayList with words</returns>
+        private ArrayList GetWordsBySplitNumberToTriplets(long number)
         {
             ArrayList words = new ArrayList();
 
-            var triples = number.ToTriples();
+            var triplets = number.ToTriplets();
 
-            for (var tripleIndex = 0; tripleIndex < triples.Length; tripleIndex++)
+            for (var tripletIndex = 0; tripletIndex < triplets.Length; tripletIndex++)
             {
-                var triple = triples[tripleIndex];
-                var phrase = _triplerTransformer.ToPhrase(triple);
+                var triplet = triplets[tripletIndex];
+                var phrase = _triplerTransformer.ToWords(triplet);
 
-                var noun = _largeNumberNamesDictionary.GetLargeNumberNoun(tripleIndex);
+                var noun = _largeNumberNamesDictionary.GetLargeNumberNoun(tripletIndex);
 
                 if(noun != Noun.Empty)
                 {
@@ -65,7 +67,7 @@ namespace TWord
 
                     if (_nounInflector != null)
                     {
-                        largeNumberName = _nounInflector.InflectNounByNumber(triple,
+                        largeNumberName = _nounInflector.InflectNounByNumber(triplet.ToInt(),
                             noun.Singular,
                             noun.Plural,
                             noun.GenitivePlural);

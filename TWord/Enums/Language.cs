@@ -2,6 +2,7 @@
 {
     public enum Language
     {
+        English,
         Polish
     }
 }

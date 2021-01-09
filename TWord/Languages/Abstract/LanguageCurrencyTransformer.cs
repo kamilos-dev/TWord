@@ -6,10 +6,9 @@ namespace TWord
     {
         protected abstract ICurrencyTransformer GetCurrencyTransformer();
 
-        public string ToWords(decimal amount, CurrencySymbol currencySymbol, bool integerPartOnly, bool decimalPartAsFraction, 
-            MidpointRounding? rounding = null)
+        public string ToWords(decimal amount, CurrencySymbol currencySymbol, CurrencyOptions currencyOptions)
         {
-            return GetCurrencyTransformer().ToWords(amount, currencySymbol, integerPartOnly, decimalPartAsFraction, rounding);
+            return GetCurrencyTransformer().ToWords(amount, currencySymbol, currencyOptions);
         }
     }
 }

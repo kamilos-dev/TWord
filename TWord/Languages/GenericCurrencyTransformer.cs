@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Linq;
 
 namespace TWord
@@ -20,25 +19,70 @@ namespace TWord
             _nounInflector = nounInflector;
         }
 
-        public string ToWords(decimal amount, CurrencySymbol currencySymbol, bool integerPartOnly, 
-            bool decimalPartAsFraction, MidpointRounding? rounding = null)
+        ///<inheritdoc cref="INumberTransformer"/>
+        public string ToWords(decimal amount, CurrencySymbol currencySymbol, 
+            CurrencyOptions currencyOptions)
         {
-            var integerPart = amount.GetIntegerPart();
-            var currency = _currencyDictionary.GetCurrency(currencySymbol);
-
             var words = new ArrayList();
 
-            words.AddRange(IntegerToWords(integerPart, currency));
+            var currency = _currencyDictionary.GetCurrency(currencySymbol);
 
-            if(!integerPartOnly)
+            words.AddRange(IntegerPartToWords(amount, currency));            
+
+            var withDecimalPart = !currencyOptions?.IntegerPartOnly ?? true;
+
+            if (withDecimalPart)
             {
-                var decimalPart = amount.GetDecimalPart(rounding);
-                words.AddRange(DecimalToWords(decimalPart, currency, decimalPartAsFraction));
+                words.AddRange(DecimalPartToWords(amount, currency, currencyOptions));
             }
 
             return string.Join(" ", words.OfType<string>()).Trim();
         }
 
+        /// <summary>
+        /// Transform integer part of amount to words.
+        /// </summary>
+        /// <param name="amount">Decimal number</param>
+        /// <param name="currency">Currency</param>
+        /// <returns>ArrayList of words</returns>
+        private ArrayList IntegerPartToWords(decimal amount, Currency currency)
+        {
+            var integerPart = amount.GetIntegerPart();
+
+            return IntegerToWords(integerPart, currency);
+        }
+
+        /// <summary>
+        /// Transform decimal part of amount to words.
+        /// </summary>
+        /// <param name="amount">Decimal number</param>
+        /// <param name="currency">Currency</param>
+        /// <returns>ArrayList of words</returns>
+        private ArrayList DecimalPartToWords(decimal amount, Currency currency, CurrencyOptions currencyOptions)
+        {
+            var words = new ArrayList();
+
+            var decimalPartAsFraction = currencyOptions?.DecimalAsFraction ?? false;
+            var hideSubunit = currencyOptions?.HideSubunit ?? false;
+            var integerAndDecimalPartSeparator = currencyOptions?.IntegerAndDecimalPartSeparator;
+
+            if (!string.IsNullOrEmpty(integerAndDecimalPartSeparator))
+            {
+                words.Add(integerAndDecimalPartSeparator);
+            }
+
+            var decimalPart = amount.GetDecimalPart();
+            words.AddRange(DecimalToWords(decimalPart, currency, decimalPartAsFraction, hideSubunit));
+
+            return words;
+        }
+
+        /// <summary>
+        /// Transform given integer number to words
+        /// </summary>
+        /// <param name="number">Number</param>
+        /// <param name="currency">Currency</param>
+        /// <returns>ArrayList of words</returns>
         private ArrayList IntegerToWords(long number, Currency currency)
         {
             var words = new ArrayList();
@@ -49,24 +93,41 @@ namespace TWord
             return words;
         }
 
-        private ArrayList DecimalToWords(int number, Currency currency, bool decimalPartAsFraction)
+        /// <summary>
+        /// Transform given decimal part to words
+        /// </summary>
+        /// <param name="number">Number</param>
+        /// <param name="currency">Currency</param>
+        /// <returns>ArrayList of words</returns>
+        private ArrayList DecimalToWords(decimal number, Currency currency, bool decimalPartAsFraction, bool hideSubunit)
         {
             var words = new ArrayList();
 
-            if(decimalPartAsFraction)
+            long decimalPart = DecimalConventer.ConvertDecimalPartToLong(number);
+
+            if (decimalPartAsFraction)
             {
-                words.Add(number.AsFraction(100));
+                words.Add(decimalPart.AsFraction(currency.NumberToBasic));
             }
             else
             {
-                words.Add(_numberTransformer.ToWords(number));
+                words.Add(_numberTransformer.ToWords(decimalPart));
             }
-            
-            words.Add(InflectCurrencyNoun(number, currency.DecimalNoun));
+
+            if (!hideSubunit)
+            {
+                words.Add(InflectCurrencyNoun(decimalPart, currency.DecimalNoun));
+            }
 
             return words;
         }
 
+        /// <summary>
+        /// Inflect currency noun by number
+        /// </summary>
+        /// <param name="number">Number</param>
+        /// <param name="currencyNoun">Nouns of the currency</param>
+        /// <returns>Inflected noun</returns>
         private string InflectCurrencyNoun(long number, Noun currencyNoun)
         {
             return _nounInflector.InflectNounByNumber(number,

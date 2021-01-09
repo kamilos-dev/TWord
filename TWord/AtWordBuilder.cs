@@ -6,8 +6,12 @@
 
         private CurrencySymbol _currencySymbol;
 
-        private bool _integerPartOnly;
-        private bool _decimalPartAsFraction;
+        private readonly CurrencyOptions _currencyOptions;
+
+        public AtWordBuilder()
+        {
+            _currencyOptions = new CurrencyOptions();
+        }
 
         public AtWordBuilder SetLanguage(Language language)
         {
@@ -25,21 +29,35 @@
 
         public AtWordBuilder IntegerPartOnly()
         {
-            _integerPartOnly = true;
+            _currencyOptions.IntegerPartOnly = true;
 
             return this;
         }
 
         public AtWordBuilder DecimalPartAsFraction()
         {
-            _decimalPartAsFraction = true;
+            _currencyOptions.DecimalAsFraction = true;
+
+            return this;
+        }
+
+        public AtWordBuilder HideSubunit()
+        {
+            _currencyOptions.HideSubunit = true;
+
+            return this;
+        }
+
+        public AtWordBuilder IntegerAndDecimalPartSeparator(string separator)
+        {
+            _currencyOptions.IntegerAndDecimalPartSeparator = separator;
 
             return this;
         }
 
         public IAtWord Build()
         {
-            return new AtWord(_language, _currencySymbol, _integerPartOnly, _decimalPartAsFraction);
+            return new AtWord(_language, _currencySymbol, _currencyOptions);
         }
     }
 }

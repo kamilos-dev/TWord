@@ -1,44 +1,60 @@
 ﻿using System;
 using System.Collections;
-using System.Globalization;
 using System.Linq;
 
 namespace TWord
 {
-    public static class Extensions
+    internal static class Extensions
     {
+        public static int GetUnits(this int value)
+        {
+            return ((long)value).GetUnits();
+        }
+
+        public static int GetTens(this int value)
+        {
+            return ((long)value).GetTens();
+        }
+
+        public static int GetHundreds(this int value)
+        {
+            return ((long)value).GetHundreds();
+        }
+
+        public static int GetUnits(this long value)
+        {
+            return (int)(value % 10);
+        }
+
+        public static int GetTens(this long value)
+        {
+            return (int)(value / 10 % 10);
+        }
+
+        public static int GetHundreds(this long value)
+        {
+            return (int)(value / 100 % 10);
+        }
+
         /// <summary>
         /// Split number to triples. 
         /// E.g 12345 give 123 and 45
         /// </summary>
         /// <param name="value">Number</param>
         /// <returns>Array of triples</returns>
-        public static int[] ToTriples(this long number)
+        public static Triplet[] ToTriplets(this long number)
         {
             ArrayList tripples = new ArrayList();
 
             while (number > 0)
             {
-                tripples.Add((int)(number % 1000));
+                Triplet triplet = new Triplet((int)(number % 1000));
+                tripples.Add(triplet);
+
                 number = (int)(number / 1000);
             }
 
-            return tripples.OfType<int>().ToArray();
-        }
-
-        /// <summary>
-        /// Returns each digit of the number separately
-        /// E.g. 123 -> 1, 2, 3
-        /// </summary>
-        /// <param name="value">Number</param>
-        /// <returns>Array of digits</returns>
-        public static int[] GetDigits(this int value)
-        {
-            var units = value % 10;
-            var tens = (value / 10) % 10;
-            var hundreds = (value / 100) % 10;
-
-            return new int[] { units, tens, hundreds };
+            return tripples.OfType<Triplet>().ToArray();
         }
 
         /// <summary>
@@ -48,13 +64,8 @@ namespace TWord
         /// <param name="number">Number</param>
         /// <param name="divisor">Divisor. Should be less than number</param>
         /// <returns></returns>
-        public static string AsFraction(this int number, int divisor)
+        public static string AsFraction(this long number, int divisor = 100)
         {
-            if(number > divisor)
-            {
-                throw new Exception("Na pewno?");
-            }
-
             return $"{number}/{divisor}";
         }
 
@@ -74,46 +85,33 @@ namespace TWord
         /// E.g. 123.45 returns 45
         /// </summary>
         /// <param name="value">Decimal number</param>
-        /// <returns>Decimal part</returns>
-        public static int GetDecimalPart(this decimal value)
-        {
-            return GetDecimalPart(value, MidpointRounding.AwayFromZero);
-        }
-
-        /// <summary>
-        /// Returns decimal part of decimal number.
-        /// E.g. 123.45 returns 45
-        /// </summary>
-        /// <param name="value">Decimal number</param>
-        /// <param name="rounding">Rounding of the decimal part</param>
-        /// <returns>Decimal part</returns>
-        public static int GetDecimalPart(this decimal value, MidpointRounding? rounding = MidpointRounding.AwayFromZero)
-        {
-            return GetDecimalPart(value, rounding, 2);
-        }
-
-        /// <summary>
-        /// Returns decimal part of decimal number.
-        /// E.g. 123.45 returns 45
-        /// </summary>
-        /// <param name="value">Decimal number</param>
         /// <param name="rounding">Rounding</param>
         /// <returns>Decimal part</returns>
-        public static int GetDecimalPart(this decimal value, MidpointRounding? rounding = MidpointRounding.AwayFromZero, int? decimalPlaces = 2)
+        public static decimal GetDecimalPart(this decimal value)
         {
             if (value == decimal.Zero)
                 return 0;
 
-            var fractialPart = value - value.GetIntegerPart();
-            var roundedFractialPart = Math.Round(fractialPart, decimalPlaces.Value, rounding.Value);
+            return (value - value.GetIntegerPart()).Normalize();
+        }
 
-            var stringFormat = "0.00";
-            var cultureInfo = CultureInfo.InvariantCulture;
+        /// <summary>
+        /// Add decimal part to decimal value if not exists.
+        /// Remove leasing 0 it exists.
+        /// E.g 
+        ///     1 --> 1.0
+        ///     1.010 --> 1.01
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public static decimal Normalize(this decimal value)
+        {
+            if(value % 1 == 0)
+            {
+                return value * 1.0m;
+            }
 
-            string fractialPartStr = roundedFractialPart.ToString(stringFormat, cultureInfo).Split(".")[1];
-            int fractialPartInt = Convert.ToInt32(fractialPartStr);
-
-            return fractialPartInt;
+            return value / 1.000000000000000000000000000000000m;
         }
     }
 }

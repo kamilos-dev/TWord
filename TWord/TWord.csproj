@@ -8,4 +8,14 @@
     <AssemblyName>TWord</AssemblyName>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Transformers\" />
+  </ItemGroup>
+	
+	<ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>TWord.Tests</_Parameter1>
+    </AssemblyAttribute>
+	</ItemGroup>
+
 </Project>

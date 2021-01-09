@@ -1,7 +1,7 @@
 ﻿using TWord;
 using Xunit;
 
-namespace TWord.Tests.NtWord.Polish
+namespace TWord.Tests.NtWord
 {
     public class PolishNtWordTests
     {

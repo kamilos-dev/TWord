@@ -1,20 +1,18 @@
 ﻿namespace TWord
 {
-    internal class PolishNounInflector : INounInflector
+    internal class EnglishNounInflector : INounInflector
     {
         public string InflectNounByNumber(long number,
             string singular, string plural, string genitivePlural)
         {
-            var units = number.GetUnits();
-            var tens = number.GetTens();
+            var units = number % 10;
 
             if (number == 1)
             {
                 return singular;
             }
 
-            if (tens != 1 &&
-                units >= 2 && units <= 4)
+            if (units >= 2 && units <= 4)
             {
                 return plural;
             }

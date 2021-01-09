@@ -11,6 +11,7 @@ namespace TWord
                 case Language.Polish:
                     return new PolishNumberTransformer();
                 case Language.English:
+                    return new EnglishNumberTransformer();
                 default:
                     throw new InvalidOperationException($"Transformer for language {language} not found!");
             }

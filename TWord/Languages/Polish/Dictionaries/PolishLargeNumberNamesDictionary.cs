@@ -31,7 +31,7 @@
         public Noun GetLargeNumberNoun(int largeNumberIndex)
         {
             if (_largeNumberNames.Length <= largeNumberIndex)
-                return null;
+                return Noun.Empty;
 
             return _largeNumberNames[largeNumberIndex];
         }

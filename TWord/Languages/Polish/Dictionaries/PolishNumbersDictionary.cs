@@ -11,6 +11,9 @@ namespace TWord
         ///<inheritdoc/>
         public override string Minus => "minus";
 
+        ///<inheritdoc/>
+        public override string Hyphen => " ";
+
         protected override Dictionary<int, string> _ones => new Dictionary<int, string>
         {
             {0, "zero" },

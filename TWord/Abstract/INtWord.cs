@@ -10,6 +10,6 @@
         /// </summary>
         /// <param name="number">Number</param>
         /// <returns>Words</returns>
-        string ToWords(int number);
+        string ToWords(long number);
     }
 }

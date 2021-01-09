@@ -1,7 +1,15 @@
 ﻿namespace TWord
 {
-    public interface ITriplerTransformer
+    /// <summary>
+    /// Triplet transformer
+    /// </summary>
+    internal interface ITripletTransformer
     {
-        string ToPhrase(int triple);
+        /// <summary>
+        /// Transform given triplet to words
+        /// </summary>
+        /// <param name="triplet">Three-digits number (triplet)</param>
+        /// <returns>Words</returns>
+        string ToWords(Triplet triplet);
     }
 }

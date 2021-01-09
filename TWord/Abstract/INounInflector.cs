@@ -6,7 +6,7 @@
     internal interface INounInflector
     {
         /// <summary>
-        /// Returns inflected by number noun
+        /// Returns noun inflected by number
         /// </summary>
         /// <param name="number">Number</param>
         /// <param name="singular">Singular noun</param>

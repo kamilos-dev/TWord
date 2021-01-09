@@ -2,14 +2,14 @@
 {
     internal class NtWord : INtWord
     {
-        private INumberTransformer _numberTransformer;
+        private readonly INumberTransformer _numberTransformer;
 
         public NtWord(Language language)
         {
-            _numberTransformer = NumberTransformerSelector.Select(language);
+            _numberTransformer = NumberTransformerSelector.Select(language);           
         }
 
-        public string ToWords(int number)
+        public string ToWords(long number)
         {
             return _numberTransformer.ToWords(number);
         }

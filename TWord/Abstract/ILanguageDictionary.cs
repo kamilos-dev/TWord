@@ -3,7 +3,7 @@
     /// <summary>
     /// Dicrionary with number names
     /// </summary>
-    public interface ILanguageNumbersDictionary
+    internal interface ILanguageNumbersDictionary
     {
         /// <summary>
         /// Returns zero word
@@ -14,6 +14,11 @@
         /// Returns minus word
         /// </summary>
         string Minus { get; }
+
+        /// <summary>
+        /// Return hyphenate sigh
+        /// </summary>
+        string Hyphen { get; }
 
         /// <summary>
         /// Returns ones (0-9) word

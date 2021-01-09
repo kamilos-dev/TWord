@@ -1,30 +1,23 @@
 ﻿namespace TWord
 {
-    public interface IAtWord
-    {
-        string ToWord(decimal amount);
-    }
-
     public class AtWord : IAtWord
     {
-        private ICurrencyTransformer _currencyTransformer;
+        private readonly ICurrencyTransformer _currencyTransformer;
 
-        private CurrencySymbol _currencySymbol;
-        private bool _integerPartOnly;
-        private bool _decimalPartAsFraction;
+        private readonly CurrencySymbol _currencySymbol;
+        private readonly CurrencyOptions _currencyOptions;
 
-        public AtWord(Language language, CurrencySymbol currencySymbol, bool integerPartOnly, bool decimalPartAsFraction)
+        public AtWord(Language language, CurrencySymbol currencySymbol, CurrencyOptions currencyOptions)
         {
             _currencySymbol = currencySymbol;
-            _integerPartOnly = integerPartOnly;
-            _decimalPartAsFraction = decimalPartAsFraction;
+            _currencyOptions = currencyOptions;
 
             _currencyTransformer = CurrencyTransformerSelector.Select(language);
         }
 
         public string ToWord(decimal amount)
         {
-            return _currencyTransformer.ToWords(amount, _currencySymbol, _integerPartOnly, _decimalPartAsFraction);
+            return _currencyTransformer.ToWords(amount, _currencySymbol, _currencyOptions);
         }
     }
 }
