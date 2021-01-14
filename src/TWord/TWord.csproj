@@ -4,18 +4,19 @@
 		<PackageId>TWord</PackageId>
 		<Version>1.0.0</Version>
 		<Authors>$(Company)</Authors>
+		
+		<Description>Transforms numbers or amount of money into words.</Description>
+		<Summary>Transforms numbers or amount of money into words.</Summary>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
 		<PackageTags>Transform to words;Amount to words;Number to words;TWord;TWords;Amount;Number;Words;Phrase;Transform;Currency</PackageTags>
 		<PackageProjectUrl>https://github.com/szyn33k/TWord</PackageProjectUrl>
 		<PackageReleaseNotes>https://github.com/szyn33k/TWord/blob/master/Changelog.md</PackageReleaseNotes>
 		<PackageIcon>favicon.png</PackageIcon>
-		<Description>
-      This client library transform number to words or amount to words.
-			See more on github - https://github.com/szyn33k/TWord
-    </Description>
+		
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
-	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
 		
 		<!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
@@ -28,7 +29,7 @@
   </PropertyGroup>
 	
 	<ItemGroup>
-		<None Include="../../favicon.png" Pack="true" PackagePath="" />
+		<None Include="..\..\favicon.png" Pack="true" PackagePath="" />
 	</ItemGroup>
 	
 	<!-- For testing internal resources -->
