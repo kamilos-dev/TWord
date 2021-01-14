@@ -2,7 +2,7 @@
 
 namespace TWord
 {
-    internal record Currency
+    internal class Currency
     {
         /// <summary>
         /// Currency symbol
@@ -26,8 +26,11 @@ namespace TWord
         public int NumberToBasic => GetNumberToBasic();
 
         internal Currency(CurrencySymbol symbol, Noun integerNoun, Noun decimalNoun)
-         => (Symbol, IntegerNoun, DecimalNoun)
-         = (symbol, integerNoun, decimalNoun);
+        {
+            Symbol = symbol;
+            IntegerNoun = integerNoun;
+            DecimalNoun = decimalNoun;
+        }
 
         internal static Currency Create(CurrencySymbol symbol, Noun integerNoun, Noun decimalNoun)
          => new Currency(symbol, integerNoun, decimalNoun);

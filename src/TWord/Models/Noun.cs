@@ -23,8 +23,11 @@
         public string GenitivePlural { get; private set; }
 
         internal Noun(string singular, string plural, string genitivePlural)
-            => (Singular, Plural, GenitivePlural)
-            = (singular, plural, genitivePlural);
+        {
+            Singular = singular;
+            Plural = plural;
+            GenitivePlural = genitivePlural;
+        }
 
         internal static Noun Create(string singular)
             => new Noun(singular, singular, singular);

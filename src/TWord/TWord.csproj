@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 		<PackageId>TWord</PackageId>
-		<Version>1.0.0</Version>
+		<Version>1.0.2</Version>
 		<Authors>$(Company)</Authors>
 		
 		<Description>Transforms numbers or amount of money into words.</Description>
@@ -22,7 +22,7 @@
     <EmbedUntrackedSources>true</EmbedUntrackedSources>
 		<DebugType>embedded</DebugType>
 		
-		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+		<TargetFrameworks>netstandard2.1;net5.0;net461</TargetFrameworks>
 		
     <RootNamespace>TWord</RootNamespace>
     <AssemblyName>TWord</AssemblyName>
