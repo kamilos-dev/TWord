@@ -1,0 +1,42 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+		<PackageId>TWord</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>$(Company)</Authors>
+		
+		<Description>Transforms numbers or amount of money into words.</Description>
+		<Summary>Transforms numbers or amount of money into words.</Summary>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+		<PackageTags>Transform to words;Amount to words;Number to words;TWord;TWords;Amount;Number;Words;Phrase;Transform;Currency</PackageTags>
+		<PackageProjectUrl>https://github.com/szyn33k/TWord</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/szyn33k/TWord/blob/master/Changelog.md</PackageReleaseNotes>
+		<PackageIcon>favicon.png</PackageIcon>
+		
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
+		<IncludeSymbols>true</IncludeSymbols>
+		
+		<!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<DebugType>embedded</DebugType>
+		
+		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+		
+    <RootNamespace>TWord</RootNamespace>
+    <AssemblyName>TWord</AssemblyName>
+  </PropertyGroup>
+	
+	<ItemGroup>
+		<None Include="..\..\favicon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+	
+	<!-- For testing internal resources -->
+	<ItemGroup>
+    <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+      <_Parameter1>TWord.Tests</_Parameter1>
+    </AssemblyAttribute>
+	</ItemGroup>
+
+</Project>
