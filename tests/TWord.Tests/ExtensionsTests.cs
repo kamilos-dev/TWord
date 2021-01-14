@@ -14,7 +14,7 @@ namespace TWord.Tests
             long number4 = 0;
 
             Assert.Equal(4, number1.GetUnits());
-            Assert.Equal(4, number2.GetUnits());            
+            Assert.Equal(4, number2.GetUnits());
 
             Assert.Equal(0, number3.GetUnits());
             Assert.Equal(0, number4.GetUnits());

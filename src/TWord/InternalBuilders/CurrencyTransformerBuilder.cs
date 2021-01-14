@@ -52,7 +52,7 @@ namespace TWord
         /// </summary>
         public ICurrencyTransformer Build()
         {
-            if(_numberTransformer == null)
+            if (_numberTransformer == null)
             {
                 throw new NullReferenceException($"{nameof(INumberTransformer)} cannot be null. " +
                     $"Use {nameof(SetNumberTransformer)} to set it.");

@@ -66,7 +66,7 @@ namespace TWord
         /// </summary>
         public INumberTransformer Build()
         {
-            if(_numbersDictionary == null)
+            if (_numbersDictionary == null)
             {
                 throw new NullReferenceException($"{nameof(ILanguageNumbersDictionary)} cannot be null. Use {nameof(SetNumbersDictionary)} to set it.");
             }

@@ -12,6 +12,6 @@
         PLN,
 
         [CurrencyData(numberToBase: 100)]
-        USD        
+        USD
     }
 }

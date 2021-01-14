@@ -136,7 +136,7 @@ namespace TWord
         /// <returns></returns>
         public static decimal Normalize(this decimal value)
         {
-            if(value % 1 == 0)
+            if (value % 1 == 0)
             {
                 return value * 1.0m;
             }

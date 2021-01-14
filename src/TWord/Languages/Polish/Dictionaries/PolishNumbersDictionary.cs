@@ -65,6 +65,6 @@ namespace TWord
             {7, "siedemset" },
             {8, "osiemset" },
             {9, "dziewięćset" }
-        };        
+        };
     }
 }

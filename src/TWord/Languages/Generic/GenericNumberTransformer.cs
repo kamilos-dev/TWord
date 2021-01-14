@@ -61,7 +61,7 @@ namespace TWord
 
                 var noun = _largeNumberNamesDictionary.GetLargeNumberNoun(tripletIndex);
 
-                if(noun != Noun.Empty)
+                if (noun != Noun.Empty)
                 {
                     var largeNumberName = noun.Singular;
 
@@ -74,7 +74,7 @@ namespace TWord
                     }
 
                     words.Add(largeNumberName);
-                }                
+                }
 
                 words.Add(phrase);
             }

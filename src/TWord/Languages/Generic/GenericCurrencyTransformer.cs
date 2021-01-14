@@ -11,7 +11,7 @@ namespace TWord
         private readonly INounInflector _nounInflector;
 
         public GenericCurrencyTransformer(
-            INumberTransformer numberTransformer, 
+            INumberTransformer numberTransformer,
             ICurrencyDictionary currencyDictionary,
             INounInflector nounInflector)
         {
@@ -21,14 +21,14 @@ namespace TWord
         }
 
         ///<inheritdoc/>
-        public string ToWords(decimal amount, CurrencySymbol currencySymbol, 
+        public string ToWords(decimal amount, CurrencySymbol currencySymbol,
             CurrencyOptions currencyOptions)
         {
             var words = new ArrayList();
 
             var currency = _currencyDictionary.GetCurrency(currencySymbol);
 
-            words.AddRange(IntegerPartToWords(amount, currency));            
+            words.AddRange(IntegerPartToWords(amount, currency));
 
             var withDecimalPart = !currencyOptions?.IntegerPartOnly ?? true;
 
