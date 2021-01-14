@@ -25,6 +25,18 @@
             Hundreds = hundreds;
         }
 
+        /// <summary>
+        /// Returns value of triplet.
+        /// </summary>
+        /// 
+        /// E.g
+        /// Unit = 1
+        /// Tens = 2
+        /// Hundreds = 3
+        /// 
+        /// Value = 321
+        /// 
+        /// <returns>Value of triplet</returns>
         internal int ToInt()
         {
             return

@@ -4,33 +4,63 @@ using System.Linq;
 
 namespace TWord
 {
-    internal static class Extensions
+    internal static class NumberExtensions
     {
+        /// <summary>
+        /// Returns units of given value
+        /// </summary>
+        /// <param name="value">Int value</param>
+        /// <returns>Units as int</returns>
         public static int GetUnits(this int value)
         {
             return ((long)value).GetUnits();
         }
 
+        /// <summary>
+        /// Returns tens of given value
+        /// </summary>
+        /// <param name="value">Int value</param>
+        /// <returns>Tens as int</returns>
         public static int GetTens(this int value)
         {
             return ((long)value).GetTens();
         }
 
+        /// <summary>
+        /// Returns hundreds of given value
+        /// </summary>
+        /// <param name="value">Int value</param>
+        /// <returns>Hundreds as int</returns>
         public static int GetHundreds(this int value)
         {
             return ((long)value).GetHundreds();
         }
 
+        /// <summary>
+        /// Returns units of given value
+        /// </summary>
+        /// <param name="value">Long value</param>
+        /// <returns>Units as int</returns>
         public static int GetUnits(this long value)
         {
             return (int)(value % 10);
         }
 
+        /// <summary>
+        /// Returns tens of given value
+        /// </summary>
+        /// <param name="value">Long value</param>
+        /// <returns>Tens as int</returns>
         public static int GetTens(this long value)
         {
             return (int)(value / 10 % 10);
         }
 
+        /// <summary>
+        /// Returns hundreds of given value
+        /// </summary>
+        /// <param name="value">Long value</param>
+        /// <returns>Hundreds as int</returns>
         public static int GetHundreds(this long value)
         {
             return (int)(value / 100 % 10);

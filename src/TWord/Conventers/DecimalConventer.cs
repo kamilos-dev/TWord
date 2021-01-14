@@ -14,7 +14,7 @@ namespace TWord
         {
             string fractialPartStr = value
                 .ToString("0.00", CultureInfo.InvariantCulture)
-                .Split(".")[1];
+                .Split('.')[1];
 
             return Convert.ToInt64(fractialPartStr);
         }

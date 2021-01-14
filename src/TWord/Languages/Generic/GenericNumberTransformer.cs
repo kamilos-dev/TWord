@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace TWord
 {
-    ///<inheritdoc cref="INumberTransformer"/>
+    ///<inheritdoc/>
     internal class GenericNumberTransformer : INumberTransformer
     {
         private readonly ILanguageNumbersDictionary _numbersDictionary;
@@ -24,7 +24,7 @@ namespace TWord
             _nounInflector = nounInflector;
         }
 
-        ///<inheritdoc cref="INumberTransformer"/>
+        ///<inheritdoc/>
         public string ToWords(long value)
         {
             if (value == 0)

@@ -16,7 +16,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TWord\TWord.csproj" />
+    <ProjectReference Include="..\..\src\TWord\TWord.csproj" />
   </ItemGroup>
 
 </Project>

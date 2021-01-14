@@ -1,16 +1,18 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+		<PackageId>TWord</PackageId>
+		<Version>1.0.0</Version>
+		<Authors>Kamil Szymeczko</Authors>
+		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+
+		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+		<LangVersion>latest</LangVersion>
+		
     <OutputType>Library</OutputType>
     <RootNamespace>TWord</RootNamespace>
-    <StartupObject></StartupObject>
     <AssemblyName>TWord</AssemblyName>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Folder Include="Transformers\" />
-  </ItemGroup>
 	
 	<ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">

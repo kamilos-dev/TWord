@@ -2,7 +2,7 @@
 
 namespace TWord
 {
-    ///<inheritdoc cref="ITripletTransformer"/>
+    ///<inheritdoc/>
     internal class GenericTripletTransformer : ITripletTransformer
     {
         private readonly ILanguageNumbersDictionary _numbersDictionary;
@@ -12,7 +12,7 @@ namespace TWord
             _numbersDictionary = numbersDictionary;
         }
 
-        ///<inheritdoc cref="ITripletTransformer"/>
+        ///<inheritdoc/>
         public string ToWords(Triplet triplet)
         {
             ArrayList words = new ArrayList();
@@ -42,7 +42,7 @@ namespace TWord
                 words.Add(_numbersDictionary.GetOnesWord(triplet.Units));
             }
 
-            return string.Join(' ', words.ToArray());
+            return string.Join(" ", words.ToArray());
         }
     }
 }

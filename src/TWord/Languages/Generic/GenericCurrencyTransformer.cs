@@ -3,6 +3,7 @@ using System.Linq;
 
 namespace TWord
 {
+    ///<inheritdoc/>
     internal class GenericCurrencyTransformer : ICurrencyTransformer
     {
         private readonly INumberTransformer _numberTransformer;
@@ -19,7 +20,7 @@ namespace TWord
             _nounInflector = nounInflector;
         }
 
-        ///<inheritdoc cref="INumberTransformer"/>
+        ///<inheritdoc/>
         public string ToWords(decimal amount, CurrencySymbol currencySymbol, 
             CurrencyOptions currencyOptions)
         {

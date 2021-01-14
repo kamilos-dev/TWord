@@ -13,7 +13,7 @@ namespace TWord
                 case Language.English:
                     return new EnglishNumberTransformer();
                 default:
-                    throw new InvalidOperationException($"Transformer for language {language} not found!");
+                    throw new InvalidOperationException($"{typeof(INumberTransformer)} for language {language} not found!");
             }
         }
     }
