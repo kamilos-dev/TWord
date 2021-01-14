@@ -24,3 +24,8 @@ jobs:
         
       - name: Test
         run: dotnet test --configuration Release
+        
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1.0.5
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
