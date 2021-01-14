@@ -42,7 +42,7 @@ public static class Program
 {
     IAtWord at = new AtWordBuilder()
                 .SetLanguage(Language.English)
-				.SetCurrency(CurrencySymbol.USD)
+                .SetCurrency(CurrencySymbol.USD)
                 .Build(); 
 								
 	var words = at.ToWords(56123.01m);
