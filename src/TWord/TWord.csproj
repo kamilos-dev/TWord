@@ -3,17 +3,35 @@
   <PropertyGroup>
 		<PackageId>TWord</PackageId>
 		<Version>1.0.0</Version>
-		<Authors>Kamil Szymeczko</Authors>
+		<Authors>$(Company)</Authors>
 		<GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-
-		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
-		<LangVersion>latest</LangVersion>
+		<PackageTags>Transform to words;Amount to words;Number to words;TWord;TWords;Amount;Number;Words;Phrase;Transform;Currency</PackageTags>
+		<PackageProjectUrl>https://github.com/szyn33k/TWord</PackageProjectUrl>
+		<PackageReleaseNotes>https://github.com/szyn33k/TWord/blob/master/Changelog.md</PackageReleaseNotes>
+		<PackageIcon>favicon.png</PackageIcon>
+		<Description>
+      This client library transform number to words or amount to words.
+			See more on github - https://github.com/szyn33k/TWord
+    </Description>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+	  <GenerateDocumentationFile>true</GenerateDocumentationFile>
+		<PublishRepositoryUrl>true</PublishRepositoryUrl>
 		
-    <OutputType>Library</OutputType>
+		<!-- Optional: Embed source files that are not tracked by the source control manager to the PDB -->
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+		<DebugType>embedded</DebugType>
+		
+		<TargetFrameworks>netstandard2.1;net5.0</TargetFrameworks>
+		
     <RootNamespace>TWord</RootNamespace>
     <AssemblyName>TWord</AssemblyName>
   </PropertyGroup>
 	
+	<ItemGroup>
+		<None Include="../../favicon.png" Pack="true" PackagePath="" />
+	</ItemGroup>
+	
+	<!-- For testing internal resources -->
 	<ItemGroup>
     <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
       <_Parameter1>TWord.Tests</_Parameter1>

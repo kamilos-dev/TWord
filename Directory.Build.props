@@ -1,0 +1,19 @@
+<Project>
+
+  <PropertyGroup>
+    <Version>1.0</Version>
+    <Company>Szyn33k</Company>
+    <Copyright>Copyright (C) Kamil Szymeczko</Copyright>
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- Disable nullability warnings on older frameworks because there is no nullability info for BCL -->
+  <PropertyGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <Nullable>annotations</Nullable>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+  </PropertyGroup>
+
+</Project>
