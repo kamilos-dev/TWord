@@ -10,6 +10,6 @@
         /// </summary>
         /// <param name="amount">Amount</param>
         /// <returns>Words</returns>
-        string ToWord(decimal amount);
+        string ToWords(decimal amount);
     }
 }

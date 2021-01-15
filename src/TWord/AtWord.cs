@@ -1,9 +1,9 @@
 ﻿namespace TWord
 {
+    ///<inheritdoc/>
     public class AtWord : IAtWord
     {
         private readonly ICurrencyTransformer _currencyTransformer;
-
         private readonly CurrencySymbol _currencySymbol;
         private readonly CurrencyOptions _currencyOptions;
 
@@ -15,7 +15,8 @@
             _currencyTransformer = CurrencyTransformerSelector.Select(language);
         }
 
-        public string ToWord(decimal amount)
+        ///<inheritdoc/>
+        public string ToWords(decimal amount)
         {
             return _currencyTransformer.ToWords(amount, _currencySymbol, _currencyOptions);
         }
