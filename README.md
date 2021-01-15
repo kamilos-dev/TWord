@@ -34,6 +34,7 @@ Using [ISO-4217](https://www.iso.org/iso-4217-currency-codes.html)
 
 If currency that interest you is not listed - create issue, I will do my best to add it.
 
+Flag icons comes from https://github.com/tkrotoff/famfamfam_flags
 
 ## Usage
 
