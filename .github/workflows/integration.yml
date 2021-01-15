@@ -23,9 +23,10 @@ jobs:
         run: dotnet build --configuration Release
         
       - name: Test
-        run: dotnet test --configuration Release
+        run: dotnet test --configuration Release --collect:"XPlat Code Coverage"
         
       - name: Upload coverage
-        uses: codecov/codecov-action@v1.0.5
+        uses: codecov/codecov-action@v1
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: tests/TWord.Tests/TestResults/*/coverage.cobertura.xml

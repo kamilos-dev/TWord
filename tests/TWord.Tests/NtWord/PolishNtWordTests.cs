@@ -1,5 +1,4 @@
-﻿using TWord;
-using Xunit;
+﻿using Xunit;
 
 namespace TWord.Tests.NtWord
 {

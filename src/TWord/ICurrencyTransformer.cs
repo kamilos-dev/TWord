@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TWord
+﻿namespace TWord
 {
     /// <summary>
     /// Transform currency to words

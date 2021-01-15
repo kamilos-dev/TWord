@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TWord
+﻿namespace TWord
 {
     ///<inheritdoc/>
     internal abstract class LanguageCurrencyTransformer : ICurrencyTransformer
