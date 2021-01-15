@@ -2,7 +2,7 @@
 
   <PropertyGroup>
 		<PackageId>TWord</PackageId>
-		<Version>1.0.2</Version>
+		<Version>2.0.0</Version>
 		<Authors>$(Company)</Authors>
 		
 		<Description>Transforms numbers or amount of money into words.</Description>
