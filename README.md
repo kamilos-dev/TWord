@@ -2,6 +2,7 @@
 
 ![CI](https://github.com/szyn33k/TWord/workflows/Continuous-Integration/badge.svg)
 ![CD](https://github.com/szyn33k/TWord/workflows/Continuous-Delivery/badge.svg)
+[![codecov](https://codecov.io/gh/szyn33k/TWord/branch/master/graph/badge.svg?token=4T0U8LOPUV)](https://codecov.io/gh/szyn33k/TWord)
 ![Version](https://img.shields.io/nuget/v/TWord?label=Version&logo=nuget)
 
 ## Download
