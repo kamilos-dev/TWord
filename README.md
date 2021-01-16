@@ -94,4 +94,4 @@ public static class Program
 | IntegerPartOnly()  | omnits decimal part from given amount. Example: 100.04 returns `one hundred dollars`  |
 | DecimalPartAsFraction()  | displays decimal part as fraction. Example: 100.04 returns `one hundred dollars 4/100 cents`  |
 | HideSubunit()  | hides decimal part as fraction. usually use with DecimalPartAsFraction(). Example: 100.04 returns `one hundred dollars 4/100`  |
-| IntegerAndDecimalPartSeparator(string) | sets integer and decimal part separator. If separator is `and`, value is 100.04 result will be  `one hundred and four cents` |
+| IntegerAndDecimalPartSeparator(string) | sets integer and decimal part separator. If separator is `and`, value is 100.04 result will be  `one hundred dollars and four cents` |
