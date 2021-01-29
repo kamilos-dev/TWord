@@ -12,7 +12,7 @@
             _currencySymbol = currencySymbol;
             _currencyOptions = currencyOptions;
 
-            _currencyTransformer = CurrencyTransformerSelector.Select(language);
+            _currencyTransformer = CurrencyTransformerFactory.Create(language);
         }
 
         ///<inheritdoc/>

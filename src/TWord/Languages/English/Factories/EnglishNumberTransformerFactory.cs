@@ -1,8 +1,9 @@
 ﻿namespace TWord
 {
-    internal class EnglishNumberTransformer : LanguageNumberTransformer
+    [LanguageTransformer(Language.English)]
+    internal class EnglishNumberTransformerFactory : INumberTransformerFactory
     {
-        protected override INumberTransformer GetNumberTransformer()
+        public INumberTransformer Create()
         {
             var languageNumbersDictionary = new EnglishNumbersDictionary();
             var largeNumberNamesDictionary = new EnglishLargeNumberNamesDictionary();

@@ -1,10 +1,11 @@
 ﻿namespace TWord
 {
-    internal class PolishCurrencyTransformer : LanguageCurrencyTransformer
+    [LanguageTransformer(Language.Polish)]
+    internal class PolishCurrencyTransformerFactory : ICurrencyTransformerFactory
     {
-        protected override ICurrencyTransformer GetCurrencyTransformer()
+        public ICurrencyTransformer Create()
         {
-            var numberTransformer = NumberTransformerSelector.Select(Language.Polish);
+            var numberTransformer = NumberTransformerFactory.Create(Language.Polish);
             var currencyDictionary = new PolishCurrencyDictionary();
             var nounInflector = new PolishNounInflector();
 

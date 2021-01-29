@@ -70,7 +70,7 @@ namespace TWord
         /// Split number to triples. 
         /// E.g 12345 give 123 and 45
         /// </summary>
-        /// <param name="value">Number</param>
+        /// <param name="number">Number</param>
         /// <returns>Array of triples</returns>
         public static Triplet[] ToTriplets(this long number)
         {
@@ -81,7 +81,7 @@ namespace TWord
                 Triplet triplet = new Triplet((int)(number % 1000));
                 tripples.Add(triplet);
 
-                number = (int)(number / 1000);
+                number = (long)(number / 1000);
             }
 
             return tripples.OfType<Triplet>().ToArray();
@@ -115,7 +115,6 @@ namespace TWord
         /// E.g. 123.45 returns 45
         /// </summary>
         /// <param name="value">Decimal number</param>
-        /// <param name="rounding">Rounding</param>
         /// <returns>Decimal part</returns>
         public static decimal GetDecimalPart(this decimal value)
         {

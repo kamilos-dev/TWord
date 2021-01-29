@@ -3,11 +3,11 @@
 namespace TWord
 {
     ///<inheritdoc/>
-    internal class GenericTripletTransformer : ITripletTransformer
+    internal class GermanTripletTransformer : ITripletTransformer
     {
         private readonly ILanguageNumbersDictionary _numbersDictionary;
 
-        public GenericTripletTransformer(ILanguageNumbersDictionary numbersDictionary)
+        public GermanTripletTransformer(ILanguageNumbersDictionary numbersDictionary)
         {
             _numbersDictionary = numbersDictionary;
         }
@@ -20,8 +20,19 @@ namespace TWord
             if (triplet.Hundreds > 0)
             {
                 // 100, 200, 300
-                //words.Add(_numbersDictionary.GetOnesWord(triplet.Hundreds));
                 words.Add(_numbersDictionary.GetHundredsWord(triplet.Hundreds));
+            }
+
+            if (triplet.Tens != 1 && triplet.Units > 0)
+            {
+                // 1, 2, 3
+                words.Add(_numbersDictionary.GetOnesWord(triplet.Units));
+
+                if (tripletIndex == 0 && triplet.Value == 1
+                    || triplet.Hundreds != 0 && triplet.Units == 1)
+                {
+                    words.Add("s");
+                }
             }
 
             if (triplet.Tens == 1 && triplet.Units != 0)
@@ -33,17 +44,15 @@ namespace TWord
             if (triplet.Tens == 1 && triplet.Units == 0
                 || triplet.Tens > 1)
             {
+                if (triplet.Units > 0)
+                {
+                    words.Add("und");
+                }
+
                 // 10, 20, 30
                 words.Add(_numbersDictionary.GetTensWord(triplet.Tens));
             }
 
-            if (triplet.Tens != 1 && triplet.Units > 0)
-            {
-                // 1, 2, 3
-                words.Add(_numbersDictionary.GetOnesWord(triplet.Units));
-            }
-
-            //return words.Join(numberSeparator);
             return string.Join(numberSeparator, words.ToArray());
         }
     }

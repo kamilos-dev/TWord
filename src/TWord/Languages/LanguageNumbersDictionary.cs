@@ -26,6 +26,9 @@ namespace TWord
         ///<inheritdoc/>
         public virtual string GetOnesWord(int value)
         {
+            if (value == 0)
+                return Zero;
+
             return _ones[value];
         }
 

@@ -1,10 +1,11 @@
 ﻿namespace TWord
 {
-    internal class EnglishCurrencyTransformer : LanguageCurrencyTransformer
+    [LanguageTransformer(Language.English)]
+    internal class EnglishCurrencyTransformerFactory : ICurrencyTransformerFactory
     {
-        protected override ICurrencyTransformer GetCurrencyTransformer()
+        public ICurrencyTransformer Create()
         {
-            var numberTransformer = NumberTransformerSelector.Select(Language.English);
+            var numberTransformer = NumberTransformerFactory.Create(Language.English);
             var currencyDictionary = new EnglishCurrencyDictionary();
             var nounInflector = new EnglishNounInflector();
 

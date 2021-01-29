@@ -39,14 +39,12 @@ namespace TWord
         /// Returns number to basic
         /// </summary>
         /// <returns>Number to basic</returns>
-        private int GetNumberToBasic()
-        {
-            return typeof(CurrencySymbol)
+        private int GetNumberToBasic() 
+            => typeof(CurrencySymbol)
                 .GetField(Symbol.ToString())
                 .GetCustomAttributes(typeof(CurrencyDataAttribute), true)
                 .OfType<CurrencyDataAttribute>()
                 .Single()
                 .NumberToBase;
-        }
     }
 }

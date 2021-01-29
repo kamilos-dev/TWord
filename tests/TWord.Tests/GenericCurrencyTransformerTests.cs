@@ -88,7 +88,7 @@ namespace TWord.Tests
         {
             var options = new CurrencyOptions
             {
-                IntegerAndDecimalPartSeparator = "and"
+                IntegerAndDecimalPartSeparator = " and "
             };
 
             Assert.Equal("one hundred dollars and zero cents", _transformer.ToWords(100, _currency, options));

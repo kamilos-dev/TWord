@@ -24,20 +24,21 @@ namespace TWord
         public string ToWords(decimal amount, CurrencySymbol currencySymbol,
             CurrencyOptions currencyOptions)
         {
-            var words = new ArrayList();
-
             var currency = _currencyDictionary.GetCurrency(currencySymbol);
 
-            words.AddRange(IntegerPartToWords(amount, currency));
+            var integerWords = IntegerPartToWords(amount, currency);
 
             var withDecimalPart = !currencyOptions?.IntegerPartOnly ?? true;
+            var integerAndDecimalPartSeparator = currencyOptions?.IntegerAndDecimalPartSeparator;
+
+            var decimalWords = new ArrayList();
 
             if (withDecimalPart)
             {
-                words.AddRange(DecimalPartToWords(amount, currency, currencyOptions));
+                decimalWords = DecimalPartToWords(amount, currency, currencyOptions);
             }
 
-            return string.Join(" ", words.OfType<string>()).Trim();
+            return JoinNumberParts(integerWords, decimalWords, integerAndDecimalPartSeparator);
         }
 
         /// <summary>
@@ -65,15 +66,11 @@ namespace TWord
 
             var decimalPartAsFraction = currencyOptions?.DecimalAsFraction ?? false;
             var hideSubunit = currencyOptions?.HideSubunit ?? false;
-            var integerAndDecimalPartSeparator = currencyOptions?.IntegerAndDecimalPartSeparator;
-
-            if (!string.IsNullOrEmpty(integerAndDecimalPartSeparator))
-            {
-                words.Add(integerAndDecimalPartSeparator);
-            }
 
             var decimalPart = amount.GetDecimalPart();
-            words.AddRange(DecimalToWords(decimalPart, currency, decimalPartAsFraction, hideSubunit));
+            var decimalWords = DecimalToWords(decimalPart, currency, decimalPartAsFraction, hideSubunit);
+
+            words.AddRange(decimalWords);
 
             return words;
         }
@@ -131,10 +128,29 @@ namespace TWord
         /// <returns>Inflected noun</returns>
         private string InflectCurrencyNoun(long number, Noun currencyNoun)
         {
-            return _nounInflector.InflectNounByNumber(number,
-                currencyNoun.Singular,
-                currencyNoun.Plural,
-                currencyNoun.GenitivePlural);
+            return _nounInflector.InflectNounByNumber(number, currencyNoun);
+        }
+
+        /// <summary>
+        /// Concat the integer and decimal part words into phrase with part separator
+        /// </summary>
+        /// <param name="integerWords">Integer part words</param>
+        /// <param name="decimalWords">Decimal part words</param>
+        /// <param name="integerAndDecimalPartSeparator">Integer and decimal part separator</param>
+        /// <returns></returns>
+        private string JoinNumberParts(ArrayList integerWords, ArrayList decimalWords, 
+            string integerAndDecimalPartSeparator)
+        {
+            if (string.IsNullOrEmpty(integerAndDecimalPartSeparator))
+            {
+                integerAndDecimalPartSeparator = " ";
+            }
+
+            var integerPart = string.Join(" ", integerWords.OfType<string>()).Trim();
+            var decimalPart = string.Join(" ", decimalWords.OfType<string>()).Trim();
+
+            var phrase = $"{integerPart}{integerAndDecimalPartSeparator}{decimalPart}".Trim();
+            return phrase;
         }
     }
 }

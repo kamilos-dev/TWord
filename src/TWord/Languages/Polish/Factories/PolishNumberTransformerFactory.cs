@@ -1,8 +1,9 @@
 ﻿namespace TWord
 {
-    internal class PolishNumberTransformer : LanguageNumberTransformer
+    [LanguageTransformerAttribute(Language.Polish)]
+    internal class PolishNumberTransformerFactory : INumberTransformerFactory
     {
-        protected override INumberTransformer GetNumberTransformer()
+        public INumberTransformer Create()
         {
             var languageNumbersDictionary = new PolishNumbersDictionary();
             var largeNumberNamesDictionary = new PolishLargeNumberNamesDictionary();

@@ -16,7 +16,6 @@ namespace TWord
 
         protected override Dictionary<int, string> _ones => new Dictionary<int, string>
         {
-            {0, "zero" },
             {1, "one" },
             {2, "two" },
             {3, "three" },

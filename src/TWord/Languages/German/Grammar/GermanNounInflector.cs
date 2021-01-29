@@ -1,6 +1,6 @@
 ﻿namespace TWord
 {
-    internal class EnglishNounInflector : INounInflector
+    internal class GermanNounInflector : INounInflector
     {
         public string InflectNounByNumber(long number, Noun noun)
         {
@@ -9,19 +9,19 @@
 
         public string InflectNounByNumber(long number, int tripletIndex, Noun noun)
         {
-            var units = number % 10;
+            var word = noun.Singular;
 
-            if (number == 1)
+            if (number > 1)
             {
-                return noun.Singular;
+                word = noun.Plural;
             }
 
-            if (units >= 2 && units <= 4)
+            if (tripletIndex > 1)
             {
-                return noun.Plural;
+                word = $" {word}";
             }
 
-            return noun.GenitivePlural;
-        }        
+            return word;
+        }
     }
 }

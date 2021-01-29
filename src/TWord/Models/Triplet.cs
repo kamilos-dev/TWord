@@ -8,6 +8,10 @@
 
         public int Hundreds { get; private set; }
 
+        public int Value => Hundreds* 100 + Tens* 10 + Units;
+
+        public static Triplet Empty => new Triplet(0);
+
         internal Triplet(int triplet)
         {
             if (triplet > 999)
@@ -25,24 +29,26 @@
             Hundreds = hundreds;
         }
 
-        /// <summary>
-        /// Returns value of triplet.
-        /// </summary>
-        /// 
-        /// E.g
-        /// Unit = 1
-        /// Tens = 2
-        /// Hundreds = 3
-        /// 
-        /// Value = 321
-        /// 
-        /// <returns>Value of triplet</returns>
-        internal int ToInt()
+        public override bool Equals(object obj)
         {
-            return
-                Hundreds * 100 +
-                Tens * 10 +
-                Units;
+            if (!(obj is Triplet))
+                return false;
+
+            var triplet = (Triplet)obj;
+
+            return (triplet.Units == this.Units
+                && triplet.Tens == this.Tens
+                && triplet.Hundreds == this.Hundreds);
+        }
+
+        public static bool operator ==(Triplet o1, Triplet o2)
+        {
+            return o1.Equals(o2);
+        }
+
+        public static bool operator !=(Triplet o1, Triplet o2)
+        {
+            return !o1.Equals(o2);
         }
     }
 }
