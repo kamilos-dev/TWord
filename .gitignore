@@ -267,3 +267,9 @@ pub/
 
 #Ignore logs folder
 Logs
+
+# Test reports
+coveragereport
+
+# Coverage reports
+TestResults

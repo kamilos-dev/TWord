@@ -13,13 +13,14 @@ namespace TWord
         }
 
         ///<inheritdoc/>
-        public string ToWords(Triplet triplet)
+        public string ToWords(Triplet triplet, int? tripletIndex, string numberSeparator)
         {
             ArrayList words = new ArrayList();
 
             if (triplet.Hundreds > 0)
             {
                 // 100, 200, 300
+                //words.Add(_numbersDictionary.GetOnesWord(triplet.Hundreds));
                 words.Add(_numbersDictionary.GetHundredsWord(triplet.Hundreds));
             }
 
@@ -42,7 +43,8 @@ namespace TWord
                 words.Add(_numbersDictionary.GetOnesWord(triplet.Units));
             }
 
-            return string.Join(" ", words.ToArray());
+            //return words.Join(numberSeparator);
+            return string.Join(numberSeparator, words.ToArray());
         }
     }
 }

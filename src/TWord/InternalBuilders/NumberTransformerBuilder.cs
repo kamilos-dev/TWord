@@ -8,6 +8,7 @@ namespace TWord
         private ILargeNumberNamesDictionary _namesDictionary;
         private ITripletTransformer _triplerTransformer;
         private INounInflector _nounInflector;
+        private string _numberSeparator;
 
         /// <summary>
         /// Set numbers dictionary
@@ -62,6 +63,18 @@ namespace TWord
         }
 
         /// <summary>
+        /// Sets words separator
+        /// </summary>
+        /// <param name="numberSeparator">Separator</param>
+        /// <returns>NumberTransformerBuilder instance</returns>
+        public NumberTransformerBuilder NumberSeparator(string numberSeparator)
+        {
+            _numberSeparator = numberSeparator;
+
+            return this;
+        }
+
+        /// <summary>
         /// Returns INumberTransformer instance
         /// </summary>
         public INumberTransformer Build()
@@ -82,7 +95,7 @@ namespace TWord
             }
 
             return new GenericNumberTransformer(_numbersDictionary, _triplerTransformer, _namesDictionary,
-                _nounInflector);
+                _nounInflector, _numberSeparator);
         }
     }
 }

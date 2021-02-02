@@ -2,11 +2,11 @@
 
 namespace TWord.Tests.AtWord
 {
-    public class English_atTests
+    public class EnglishAtWordTests
     {
         private readonly IAtWord _at;
 
-        public English_atTests()
+        public EnglishAtWordTests()
         {
             _at = new AtWordBuilder()
                 .SetLanguage(Language.English)

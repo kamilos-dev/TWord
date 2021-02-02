@@ -57,22 +57,22 @@ namespace TWord.Tests
         {
             long number1 = 123456;
 
-            Assert.Equal(123, number1.ToTriplets()[1].ToInt());
-            Assert.Equal(456, number1.ToTriplets()[0].ToInt());
+            Assert.Equal(123, number1.ToTriplets()[1].Value);
+            Assert.Equal(456, number1.ToTriplets()[0].Value);
 
             long number2 = 12345;
 
-            Assert.Equal(12, number2.ToTriplets()[1].ToInt());
-            Assert.Equal(345, number2.ToTriplets()[0].ToInt());
+            Assert.Equal(12, number2.ToTriplets()[1].Value);
+            Assert.Equal(345, number2.ToTriplets()[0].Value);
 
             long number3 = 1234;
 
-            Assert.Equal(1, number3.ToTriplets()[1].ToInt());
-            Assert.Equal(234, number3.ToTriplets()[0].ToInt());
+            Assert.Equal(1, number3.ToTriplets()[1].Value);
+            Assert.Equal(234, number3.ToTriplets()[0].Value);
 
             long number4 = 123;
 
-            Assert.Equal(123, number4.ToTriplets()[0].ToInt());
+            Assert.Equal(123, number4.ToTriplets()[0].Value);
         }
 
         [Fact]

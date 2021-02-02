@@ -45,6 +45,13 @@ namespace TWord.Tests.NtWord
         }
 
         [Fact]
+        public void TewntyToOneHundredRandomNumbers()
+        {
+            Assert.Equal("dwadzieścia dwa", _ntWord.ToWords(22));
+            Assert.Equal("dwadzieścia osiem", _ntWord.ToWords(28));
+        }
+
+        [Fact]
         public void RandomHundredsNumbers()
         {
             Assert.Equal("sto", _ntWord.ToWords(100));
@@ -105,6 +112,31 @@ namespace TWord.Tests.NtWord
             Assert.Equal("pięć tysięcy dziesięć", _ntWord.ToWords(5010));
             Assert.Equal("pięć tysięcy dziewięćdziesiąt", _ntWord.ToWords(5090));
             Assert.Equal("pięć tysięcy sto dziewięćdziesiąt", _ntWord.ToWords(5190));
+        }
+
+        [Fact]
+        public void RandomLargeNumbers()
+        {
+            Assert.Equal("dziesięć tysięcy", _ntWord.ToWords(10000));
+            Assert.Equal("sto tysięcy", _ntWord.ToWords(100000));
+
+            Assert.Equal("jeden milion", _ntWord.ToWords(1000000));
+            Assert.Equal("dziesięć milionów", _ntWord.ToWords(10000000));
+            Assert.Equal("sto milionów", _ntWord.ToWords(100000000));
+
+            Assert.Equal("jeden miliard", _ntWord.ToWords(1000000000));
+            Assert.Equal("dziesięć miliardów", _ntWord.ToWords(10000000000));
+            Assert.Equal("sto miliardów", _ntWord.ToWords(100000000000));
+
+            Assert.Equal("jeden bilion", _ntWord.ToWords(1000000000000));
+            Assert.Equal("dziesięć bilionów", _ntWord.ToWords(10000000000000));
+            Assert.Equal("sto bilionów", _ntWord.ToWords(100000000000000));
+
+            Assert.Equal("jeden biliard", _ntWord.ToWords(1000000000000000));
+            Assert.Equal("dziesięć biliardów", _ntWord.ToWords(10000000000000000));
+            Assert.Equal("sto biliardów", _ntWord.ToWords(100000000000000000));
+
+            Assert.Equal("jeden trylion", _ntWord.ToWords(1000000000000000000));
         }
     }
 }

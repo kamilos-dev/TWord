@@ -15,6 +15,33 @@ namespace TWord.Tests.AtWord
         }
 
         [Fact]
+        public void DecimalNumbers()
+        {
+            Assert.Equal("zero złotych zero groszy", _at.ToWords(0.0m));
+            Assert.Equal("zero złotych zero groszy", _at.ToWords(0.00m));
+            Assert.Equal("zero złotych zero groszy", _at.ToWords(0.001m));
+            Assert.Equal("zero złotych zero groszy", _at.ToWords(0.004m));
+
+            Assert.Equal("zero złotych jeden grosz", _at.ToWords(0.005m));
+            Assert.Equal("zero złotych jeden grosz", _at.ToWords(0.01m));
+            Assert.Equal("zero złotych jeden grosz", _at.ToWords(0.0140999m));
+            Assert.Equal("zero złotych jeden grosz", _at.ToWords(0.0146999m));
+
+            Assert.Equal("zero złotych dwa grosze", _at.ToWords(0.0156999m));
+            Assert.Equal("zero złotych dwa grosze", _at.ToWords(0.02m));
+
+            Assert.Equal("zero złotych pięć groszy", _at.ToWords(0.05m));
+            Assert.Equal("zero złotych pięć groszy", _at.ToWords(0.054m));
+
+            Assert.Equal("zero złotych dziesięć groszy", _at.ToWords(0.099m));
+            Assert.Equal("zero złotych dziesięć groszy", _at.ToWords(0.1m));
+
+            Assert.Equal("zero złotych trzydzieści jeden groszy", _at.ToWords(0.305m));
+
+            Assert.Equal("zero złotych dziewięćdziesiąt dziewięć groszy", _at.ToWords(0.99m));
+        }
+
+        [Fact]
         public void ZeroToNineNumbers()
         {
             Assert.Equal("zero złotych zero groszy", _at.ToWords(0));

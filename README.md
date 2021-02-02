@@ -1,9 +1,9 @@
 # TWord
 
-![CI](https://github.com/szyn33k/TWord/workflows/Continuous-Integration/badge.svg)
-![CD](https://github.com/szyn33k/TWord/workflows/Continuous-Delivery/badge.svg)
+[![CI](https://github.com/szyn33k/TWord/workflows/Continuous-Integration/badge.svg)](https://github.com/szyn33k/TWord/actions?query=workflow%3AContinuous-Integration)
+[![CD](https://github.com/szyn33k/TWord/workflows/Continuous-Delivery/badge.svg)](https://github.com/szyn33k/TWord/actions?query=workflow%3AContinuous-Delivery)
 [![codecov](https://codecov.io/gh/szyn33k/TWord/branch/master/graph/badge.svg?token=4T0U8LOPUV)](https://codecov.io/gh/szyn33k/TWord)
-![Version](https://img.shields.io/nuget/v/TWord?label=Version&logo=nuget)
+[![Version](https://img.shields.io/nuget/v/TWord?label=Version&logo=nuget)](https://www.nuget.org/packages/TWord/)
 
 ## Download
 
@@ -17,8 +17,9 @@ Library to transform number or amount of money to words.
 
 |  Language  | 
 | ------------ | 
-|  ![PolandFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/pl.png) Polish | 
 |  ![USFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/us.png) English | 
+|  ![GermanyFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/de.png) Germany |
+|  ![PolandFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/pl.png) Polish | 
 
 If language that interest you is not listed - create issue, I will do my best to add it.
 
@@ -28,9 +29,9 @@ Using [ISO-4217](https://www.iso.org/iso-4217-currency-codes.html)
 
 |  Currency  | 
 | ------------ | 
+|  ![EUFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/eu.png) EUR |
 |  ![PolandFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/pl.png) PLN | 
-|  ![USFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/us.png) USD | 
-| ![EUFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/eu.png) EUR |
+|  ![USFlag](https://raw.githubusercontent.com/tkrotoff/famfamfam_flags/master/us.png) USD |
 
 If currency that interest you is not listed - create issue, I will do my best to add it.
 

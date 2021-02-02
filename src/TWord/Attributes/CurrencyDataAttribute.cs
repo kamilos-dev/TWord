@@ -2,6 +2,9 @@
 
 namespace TWord
 {
+    /// <summary>
+    /// Additional information for currencies
+    /// </summary>
     [AttributeUsage(AttributeTargets.Field)]
     internal class CurrencyDataAttribute : Attribute
     {
