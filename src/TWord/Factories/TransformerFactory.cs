@@ -4,19 +4,25 @@ using System.Reflection;
 
 namespace TWord
 {
-    internal static class TransformerFactory
+    internal abstract class TransformerFactory
     {
-        internal static TResult Create<TFactory, TResult>(Language language)
+        internal TResult Create<TFactory, TResult>(Language language)
         {
-            return CreateConcrete<TFactory, TResult>(language) ??
-                throw new InvalidOperationException($"{typeof(INumberTransformer)} for language {language} not found!");
+            var factoryInstance = GetFactoryInstance<TFactory>(language);
+            return InvokeMethod<TResult>(factoryInstance, "Create");
         }
 
-        private static TResult CreateConcrete<TFactory, TResult>(Language language)
+        internal TResult GetDefaultBuilder<TFactory, TResult>(Language language)
+        {
+            var factoryInstance = GetFactoryInstance<TFactory>(language);
+            return InvokeMethod<TResult>(factoryInstance, "GetDefaultBuilder");
+        }
+
+        private TFactory GetFactoryInstance<TFactory>(Language language)
         {
             var types = typeof(TransformerFactory).Assembly.GetTypes().ToList();
 
-            foreach(var type in types)
+            foreach (var type in types)
             {
                 if (!typeof(TFactory).IsAssignableFrom(type))
                     continue;
@@ -26,17 +32,19 @@ namespace TWord
                 if (attribute == null)
                     continue;
 
-                if(attribute.Language != language)
+                if (attribute.Language != language)
                     continue;
 
-                var instance = Activator.CreateInstance(type);
-
-                var createMethod = type.GetMethod("Create");
-
-                return (TResult)createMethod.Invoke(instance, null);
+                return (TFactory)Activator.CreateInstance(type);
             }
 
             return default;
+        }
+
+        private TResult InvokeMethod<TResult>(object objInstance, string methodName)
+        {
+            var method = objInstance.GetType().GetMethod(methodName);
+            return (TResult)method.Invoke(objInstance, null);
         }
     }
 }

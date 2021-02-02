@@ -5,6 +5,11 @@
     {
         public INumberTransformer Create()
         {
+            return GetDefaultBuilder().Build();
+        }
+
+        public NumberTransformerBuilder GetDefaultBuilder()
+        {
             var languageNumbersDictionary = new PolishNumbersDictionary();
             var largeNumberNamesDictionary = new PolishLargeNumberNamesDictionary();
 
@@ -15,8 +20,7 @@
                 .SetNumbersDictionary(languageNumbersDictionary)
                 .SetLargeNumberNamesDictionary(largeNumberNamesDictionary)
                 .SetTriplerTransformer(triplerTransformer)
-                .InflectNounsBy(nounInflector)
-                .Build();
+                .InflectNounsBy(nounInflector);
         }
     }
 }

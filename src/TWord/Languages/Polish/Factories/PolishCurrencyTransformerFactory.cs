@@ -5,15 +5,19 @@
     {
         public ICurrencyTransformer Create()
         {
-            var numberTransformer = NumberTransformerFactory.Create(Language.Polish);
+            return GetDefaultBuilder().Build();
+        }
+
+        public CurrencyTransformerBuilder GetDefaultBuilder()
+        {
+            var numberTransformer = new NumberTransformerFactory().Create(Language.Polish);
             var currencyDictionary = new PolishCurrencyDictionary();
             var nounInflector = new PolishNounInflector();
 
             return new CurrencyTransformerBuilder()
                 .SetNumberTransformer(numberTransformer)
                 .SetCurrencyDictionary(currencyDictionary)
-                .SetNounInflector(nounInflector)
-                .Build();
+                .SetNounInflector(nounInflector);
         }
     }
 }

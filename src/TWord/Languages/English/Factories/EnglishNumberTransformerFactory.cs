@@ -5,6 +5,11 @@
     {
         public INumberTransformer Create()
         {
+            return GetDefaultBuilder().Build();
+        }
+
+        public NumberTransformerBuilder GetDefaultBuilder()
+        {
             var languageNumbersDictionary = new EnglishNumbersDictionary();
             var largeNumberNamesDictionary = new EnglishLargeNumberNamesDictionary();
 
@@ -13,8 +18,7 @@
             return new NumberTransformerBuilder()
                 .SetNumbersDictionary(languageNumbersDictionary)
                 .SetLargeNumberNamesDictionary(largeNumberNamesDictionary)
-                .SetTriplerTransformer(triplerTransformer)
-                .Build();
+                .SetTriplerTransformer(triplerTransformer);
         }
     }
 }

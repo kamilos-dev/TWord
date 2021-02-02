@@ -7,7 +7,7 @@
         ///<inheritdoc/>
         public NtWord(Language language)
         {
-            _numberTransformer = NumberTransformerFactory.Create(language);
+            _numberTransformer = new NumberTransformerFactory().Create(language);
         }
 
         ///<inheritdoc/>

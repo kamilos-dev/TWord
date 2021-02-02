@@ -5,15 +5,19 @@
     {
         public ICurrencyTransformer Create()
         {
-            var numberTransformer = NumberTransformerFactory.Create(Language.English);
+            return GetDefaultBuilder().Build();
+        }
+
+        public CurrencyTransformerBuilder GetDefaultBuilder()
+        {
+            var numberTransformer = new NumberTransformerFactory().Create(Language.English);
             var currencyDictionary = new EnglishCurrencyDictionary();
             var nounInflector = new EnglishNounInflector();
 
             return new CurrencyTransformerBuilder()
                 .SetNumberTransformer(numberTransformer)
                 .SetCurrencyDictionary(currencyDictionary)
-                .SetNounInflector(nounInflector)
-                .Build();
+                .SetNounInflector(nounInflector);
         }
     }
 }
